@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3120.robot.commands.PneumaticsCommand;
+import org.usfirst.frc.team3120.robot.subsystems.Drive;
 import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
 
 /**
@@ -22,6 +23,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static Pneumatics pneumatics = new Pneumatics();
+	public static Drive drive = new Drive();
 
 	/**
 	 * This function is run when the robot is first started up and should be

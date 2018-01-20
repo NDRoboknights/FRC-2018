@@ -21,11 +21,13 @@ public class Pneumatics extends Subsystem {
 	public Pneumatics()
 	{
 		compressor = new Compressor(RobotMap.PCMPort);
-		solenoid0 = new Solenoid(RobotMap.solenoid0);
 		solenoid1 = new Solenoid(RobotMap.solenoid1);
 	}
 	
     public void initDefaultCommand() {
+    	
+		solenoid0 = new Solenoid(RobotMap.solenoid0);
+		solenoid1 = new Solenoid(RobotMap.solenoid1);
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }

@@ -20,4 +20,5 @@ public class RobotMap {
 	public static int PCMPort = 0;
 	public static int solenoid0 = 0;
 	public static int solenoid1 = 1;
+	public static int Drive1 = 2;
 }
