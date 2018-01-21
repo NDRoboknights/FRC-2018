@@ -25,8 +25,8 @@ import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
 public class Robot extends IterativeRobot {
 
 	public static Pneumatics pneumatics = new Pneumatics();
-	public static MecanumDrive mDrive = new MecanumDrive();
-	public static FourWDrive drive = new FourWDrive();
+	public static MecanumDrive mDrive;
+	public static FourWDrive drive;
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -44,8 +44,8 @@ public class Robot extends IterativeRobot {
 		teleOpChooser.addDefault("Pneumatics Test", new PneumaticsCommand());
 		teleOpChooser.addObject("Motor Test", new MotorTest());
 		
-		CommandGroup teleopCommand = new CommandGroup();
-		teleopCommand.addParallel(new PneumaticsCommand());
+		//CommandGroup teleopCommand = new CommandGroup();
+		//teleopCommand.addParallel(new PneumaticsCommand());
 	
 		SmartDashboard.putData("TeleOp Mode", teleOpChooser);
 		SmartDashboard.putData("Auto Mode", autoChooser);
