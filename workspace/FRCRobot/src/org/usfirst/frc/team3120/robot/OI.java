@@ -36,6 +36,7 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
+	public double threshold = 0.15;
 	public Joystick joystick1 = new Joystick(0);
 	public JoystickButton[] buttons1 = new JoystickButton[joystick1.getButtonCount()+1];
 	

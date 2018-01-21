@@ -18,7 +18,11 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	
 	public static int PCMPort = 0;
-	public static int solenoid0 = 0;
-	public static int solenoid1 = 1;
-	public static int Drive1 = 2;
+	public static int hSolenoid1_0 = 0;
+	public static int hSolenoid1_1 = 1;
+	
+	public static int FLMotor = 0;
+	public static int FRMotor = 1;
+	public static int BLMotor = 2;
+	public static int BRMotor = 3;
 }
