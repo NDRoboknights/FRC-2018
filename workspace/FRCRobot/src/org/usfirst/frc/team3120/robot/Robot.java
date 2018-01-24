@@ -3,7 +3,6 @@ package org.usfirst.frc.team3120.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -12,7 +11,6 @@ import partstest.MotorTest;
 
 import org.usfirst.frc.team3120.robot.commands.PneumaticsCommand;
 import org.usfirst.frc.team3120.robot.subsystems.FourWDrive;
-import org.usfirst.frc.team3120.robot.subsystems.MecanumDrive;
 import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
 
 /**
@@ -25,7 +23,6 @@ import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
 public class Robot extends IterativeRobot {
 
 	public static Pneumatics pneumatics = new Pneumatics();
-	public static MecanumDrive mDrive;
 	public static FourWDrive drive;
 	public static OI oi;
 
