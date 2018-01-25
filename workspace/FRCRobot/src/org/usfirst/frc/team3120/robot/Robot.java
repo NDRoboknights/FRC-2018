@@ -8,9 +8,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import partstest.MotorTest;
+import partstest.NavXTest;
 
+import org.usfirst.frc.team3120.robot.commands.TwoDriveCommand;
 import org.usfirst.frc.team3120.robot.commands.PneumaticsCommand;
-import org.usfirst.frc.team3120.robot.subsystems.FourWDrive;
+import org.usfirst.frc.team3120.robot.subsystems.TwoMotorDrive;
 import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
 
 /**
@@ -23,7 +25,7 @@ import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
 public class Robot extends IterativeRobot {
 
 	public static Pneumatics pneumatics = new Pneumatics();
-	public static FourWDrive drive;
+	public static TwoMotorDrive drive = new TwoMotorDrive();
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -38,8 +40,10 @@ public class Robot extends IterativeRobot {
 	public void robotInit() 
 	{
 		oi = new OI();
-		teleOpChooser.addDefault("Pneumatics Test", new PneumaticsCommand());
-		teleOpChooser.addObject("Motor Test", new MotorTest());
+		//teleOpChooser.addDefault("Pneumatics Test", new PneumaticsCommand());
+		//teleOpChooser.addObject("Motor Test", new MotorTest());
+		teleOpChooser.addObject("NavX Test", new NavXTest());
+		teleOpChooser.addObject("DriveTest", new TwoDriveCommand());
 		
 		//CommandGroup teleopCommand = new CommandGroup();
 		//teleopCommand.addParallel(new PneumaticsCommand());
