@@ -1,18 +1,30 @@
 
 package org.usfirst.frc.team3120.robot;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import partstest.ColorTest;
 import partstest.MotorTest;
 import partstest.NavXTest;
 
-import org.usfirst.frc.team3120.robot.commands.TwoDriveCommand;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team3120.robot.commands.PneumaticsCommand;
+import org.usfirst.frc.team3120.robot.commands.TwoDriveCommand;
 import org.usfirst.frc.team3120.robot.subsystems.TwoMotorDrive;
+
+import autonomous.DriveForward;
+import controllers.Camera;
+
 import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
 
 /**
@@ -24,9 +36,10 @@ import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
  */
 public class Robot extends IterativeRobot {
 
-	public static Pneumatics pneumatics = new Pneumatics();
-	public static TwoMotorDrive drive = new TwoMotorDrive();
+	public static Pneumatics pneumatics; //= new Pneumatics();
+	public static TwoMotorDrive drive; //= new TwoMotorDrive();
 	public static OI oi;
+	public static Camera camera;
 
 	Command autonomousCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -40,16 +53,22 @@ public class Robot extends IterativeRobot {
 	public void robotInit() 
 	{
 		oi = new OI();
-		//teleOpChooser.addDefault("Pneumatics Test", new PneumaticsCommand());
-		//teleOpChooser.addObject("Motor Test", new MotorTest());
-		teleOpChooser.addObject("NavX Test", new NavXTest());
-		teleOpChooser.addObject("DriveTest", new TwoDriveCommand());
+		teleOpChooser.addDefault("CameraTest", new ColorTest());
+//		teleOpChooser.addObject("Pneumatics Test", new PneumaticsCommand());
+//		teleOpChooser.addObject("Motor Test", new MotorTest());
+//		teleOpChooser.addObject("NavX Test", new NavXTest());
+//		teleOpChooser.addObject("DriveTest", new TwoDriveCommand());
 		
-		//CommandGroup teleopCommand = new CommandGroup();
-		//teleopCommand.addParallel(new PneumaticsCommand());
+//		CommandGroup teleopCommand = new CommandGroup();//		teleopCommand.addParallel(new PneumaticsCommand());
+//		teleopCommand.addParallel(new TwoDriveCommand());
+//		teleOpChooser.addDefault("TeleOp Main", teleopCommand);
 	
 		SmartDashboard.putData("TeleOp Mode", teleOpChooser);
-		SmartDashboard.putData("Auto Mode", autoChooser);
+//		
+//		autoChooser.addDefault("DriveForward", new DriveForward());
+//		SmartDashboard.putData("Auto Mode", autoChooser);
+		
+		camera = new Camera();
 	}
 
 	/**
