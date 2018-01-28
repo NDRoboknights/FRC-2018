@@ -36,7 +36,11 @@ public class Camera
             	
             	Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
             	outputStream.putFrame(output);
-            	pBlue = new Double(ColorProcessor.percentBlue(output));
+            	
+            	synchronized(pBlue)
+            	{
+            		pBlue = new Double(ColorProcessor.percentBlue(source));
+            	}
             }
         }).start();
 	}
