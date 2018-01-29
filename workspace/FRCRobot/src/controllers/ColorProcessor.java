@@ -38,8 +38,7 @@ public class ColorProcessor
 			}
 		}
 		
-		double inter = mat.rows() * mat.cols();
-		val /= inter;
+		val /= (mat.rows() * mat.cols());
 		
 		return val;
 	}
