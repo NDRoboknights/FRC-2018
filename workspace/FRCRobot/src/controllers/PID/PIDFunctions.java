@@ -58,7 +58,7 @@ public class PIDFunctions
     }
 
     /**
-     * @param angle The angle to go to, whether turning left or right
+     * @param angle The angle to go to, whether turning left or right, 0 to 360
      * @param statusChecker Used as a timeout
      */
     public void goToAngle(double angle, StatusChecker statusChecker)
@@ -95,12 +95,12 @@ public class PIDFunctions
 
     /**
      * @param dir The direction to turn (LEFT or RIGHT)
-     * @param angle The angle to turn to
+     * @param angle The angle to turn to, 0 to 360
      * @param sChecker Used as a timeout
      */
     public void turn(Direction dir, double angle, StatusChecker sChecker)
     {
-        pidController.setTarget(pidController.pidInput.normalizeValue(pidController.pidInput.getValue() + dir.v * angle));
+        pidController.setTarget(pidController.pidInput.getValue() + dir.v * angle);
         pidController.start();
         while(sChecker.checkStatus())
         {

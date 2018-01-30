@@ -12,6 +12,7 @@ public class NavX extends PIDInput
 	public NavX()
 	{
 		navx = new AHRS(Port.kMXP);
+		navx.zeroYaw();
 	}
 	
 	@Override
@@ -21,7 +22,7 @@ public class NavX extends PIDInput
 	}
 
 	/**
-	 * Returns value between 0-360
+	 * Returns value between 0 to 360
 	 */
 	@Override
 	public double normalizeValue(double value) {
@@ -36,7 +37,7 @@ public class NavX extends PIDInput
 	}
 
 	/**
-	 * Returns values between -180 - 180
+	 * Returns values between -180 to 180
 	 */
 	@Override
 	public double normalizeError(double error) {

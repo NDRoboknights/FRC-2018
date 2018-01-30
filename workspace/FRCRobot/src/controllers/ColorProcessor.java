@@ -19,11 +19,9 @@ public class ColorProcessor
 		}
 	}
 	
-	public static double val;
-	
 	public static double percentBlue(Mat mat)
 	{
-		val = 0;
+		double val = 0;
 		
 		for(int i=0; i<mat.width(); i++)
 		{
@@ -33,6 +31,28 @@ public class ColorProcessor
 				
 				if( (bgr[0] > ColorRange.BLUE.min && bgr[0] < ColorRange.BLUE.max) &&
 						(bgr[2] < ColorRange.RED.min || bgr[2] > ColorRange.RED.max) ) {
+					val++;
+				}
+			}
+		}
+		
+		val /= (mat.rows() * mat.cols());
+		
+		return val;
+	}
+	
+	public static double percentRed(Mat mat)
+	{
+		double val = 0;
+		
+		for(int i=0; i<mat.width(); i++)
+		{
+			for(int j=0; j<mat.height(); j++)
+			{
+				double[] bgr = mat.get(i, j);
+				
+				if( (bgr[2] > ColorRange.RED.min && bgr[2] < ColorRange.RED.max) &&
+						(bgr[0] < ColorRange.BLUE.min || bgr[0] > ColorRange.BLUE.max) ) {
 					val++;
 				}
 			}

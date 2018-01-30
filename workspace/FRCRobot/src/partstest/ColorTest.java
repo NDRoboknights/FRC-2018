@@ -28,6 +28,10 @@ public class ColorTest extends Command
     	synchronized(Robot.camera.pBlue) {
     		SmartDashboard.putString("Percent Blue: ", Double.toString(Robot.camera.pBlue));
     	}
+    	
+    	synchronized(Robot.camera.pRed) {
+    		SmartDashboard.putString("Percent Red: ", Double.toString(Robot.camera.pRed));
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -53,7 +53,7 @@ public class PIDController
 
     public double getValue()
     {
-        return pidInput.getValue();
+        return pidInput.normalizeValue(pidInput.getValue());
     }
 
     public void setTarget(double value)
@@ -73,7 +73,7 @@ public class PIDController
 
     public double getError()
     {
-        double error = target - pidInput.getValue();
+        double error = target - pidInput.normalizeValue(pidInput.getValue());
         return pidInput.normalizeError(error);
     }
 

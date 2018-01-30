@@ -13,6 +13,7 @@ public class Camera
 {
 	public UsbCamera camera;
 	public Double pBlue = new Double(0);
+	public Double pRed = new Double(0);
 	
 	public Camera()
 	{
@@ -22,10 +23,10 @@ public class Camera
             camera.setResolution(200, 200);
             
             CvSink cvSink = CameraServer.getInstance().getVideo();
-            CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 200, 200);
+            //CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 200, 200);
             
             Mat source = new Mat();
-            Mat output = new Mat();
+            //Mat output = new Mat();
                         
             while(!Thread.interrupted()) 
             {
@@ -34,12 +35,17 @@ public class Camera
             		continue;
             	}
             	
-            	Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-            	outputStream.putFrame(output);
+            	//Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+            	//outputStream.putFrame(output);
             	
             	synchronized(pBlue)
             	{
             		pBlue = new Double(ColorProcessor.percentBlue(source));
+            	}
+            	
+            	synchronized(pRed)
+            	{
+            		pRed = new Double(ColorProcessor.percentRed(source));
             	}
             }
         }).start();
