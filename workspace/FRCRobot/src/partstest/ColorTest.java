@@ -19,28 +19,24 @@ public class ColorTest extends Command
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	Robot.camera.enableColorSense();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	synchronized(Robot.camera.pBlue) {
-    		SmartDashboard.putString("Percent Blue: ", Double.toString(Robot.camera.pBlue));
-    	}
-    	
-    	synchronized(Robot.camera.pRed) {
-    		SmartDashboard.putString("Percent Red: ", Double.toString(Robot.camera.pRed));
-    	}
+    	SmartDashboard.putString("Percent Blue: ", Double.toString(Robot.camera.getPercentBlue()));
+    	SmartDashboard.putString("Percent Red: ", Double.toString(Robot.camera.getPercentRed()));
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return !this.isRunning();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.camera.disableColorSense();
     }
 
     // Called when another command which requires one or more of the same

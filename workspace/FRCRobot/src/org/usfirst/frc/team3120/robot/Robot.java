@@ -36,7 +36,7 @@ import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
  */
 public class Robot extends IterativeRobot {
 
-	public static Pneumatics pneumatics; //= new Pneumatics();
+	public static Pneumatics pneumatics = new Pneumatics();
 	public static TwoMotorDrive drive; //= new TwoMotorDrive();
 	public static OI oi;
 	public static Camera camera;
@@ -53,8 +53,8 @@ public class Robot extends IterativeRobot {
 	public void robotInit() 
 	{
 		oi = new OI();
-		teleOpChooser.addDefault("CameraTest", new ColorTest());
-//		teleOpChooser.addObject("Pneumatics Test", new PneumaticsCommand());
+//		teleOpChooser.addDefault("CameraTest", new ColorTest());
+		teleOpChooser.addObject("Pneumatics Test", new PneumaticsCommand());
 //		teleOpChooser.addObject("Motor Test", new MotorTest());
 //		teleOpChooser.addObject("NavX Test", new NavXTest());
 //		teleOpChooser.addObject("DriveTest", new TwoDriveCommand());
@@ -68,7 +68,7 @@ public class Robot extends IterativeRobot {
 //		autoChooser.addDefault("DriveForward", new DriveForward());
 //		SmartDashboard.putData("Auto Mode", autoChooser);
 		
-		camera = new Camera();
+//		camera = new Camera();
 	}
 
 	/**

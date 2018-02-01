@@ -15,7 +15,7 @@ public class Utilities
                 try {
                     monitor.wait(1);
                 } catch (InterruptedException ignored) {
-
+                	return;
                 }
             }
         }
@@ -30,14 +30,14 @@ public class Utilities
         synchronized (monitor) {
             try {
                 monitor.wait(time);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } catch (InterruptedException ignored) {
+            	return;
             }
         }
     }
 
     /**
-     * If any power is over by the MAX (1.0), will divide through by the max power. Else, returns original
+     * If any power is over the MAX (1.0), will divide through by the max power. Else, returns original
      * powers.
      * @param doubles All powers to scale with each other
      * @return An array of the new powers corresponding in order with original powers
