@@ -37,7 +37,7 @@ import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
 public class Robot extends IterativeRobot {
 
 	public static Pneumatics pneumatics = new Pneumatics();
-	public static TwoMotorDrive drive; //= new TwoMotorDrive();
+	public static TwoMotorDrive drive = new TwoMotorDrive();
 	public static OI oi;
 	public static Camera camera;
 
@@ -53,22 +53,23 @@ public class Robot extends IterativeRobot {
 	public void robotInit() 
 	{
 		oi = new OI();
-//		teleOpChooser.addDefault("CameraTest", new ColorTest());
+		teleOpChooser.addDefault("CameraColorTest", new ColorTest());
 		teleOpChooser.addObject("Pneumatics Test", new PneumaticsCommand());
-//		teleOpChooser.addObject("Motor Test", new MotorTest());
-//		teleOpChooser.addObject("NavX Test", new NavXTest());
-//		teleOpChooser.addObject("DriveTest", new TwoDriveCommand());
+		teleOpChooser.addObject("Motor Test", new MotorTest());
+		teleOpChooser.addObject("NavX Test", new NavXTest());
+		teleOpChooser.addObject("DriveTest", new TwoDriveCommand());
 		
-//		CommandGroup teleopCommand = new CommandGroup();//		teleopCommand.addParallel(new PneumaticsCommand());
-//		teleopCommand.addParallel(new TwoDriveCommand());
-//		teleOpChooser.addDefault("TeleOp Main", teleopCommand);
+		CommandGroup teleopCommand = new CommandGroup();
+		teleopCommand.addParallel(new PneumaticsCommand());
+		teleopCommand.addParallel(new TwoDriveCommand());
+		teleOpChooser.addDefault("TeleOp Main", teleopCommand);
 	
 		SmartDashboard.putData("TeleOp Mode", teleOpChooser);
-//		
-//		autoChooser.addDefault("DriveForward", new DriveForward());
-//		SmartDashboard.putData("Auto Mode", autoChooser);
 		
-//		camera = new Camera();
+		autoChooser.addDefault("DriveForward", new DriveForward());
+		SmartDashboard.putData("Auto Mode", autoChooser);
+		
+		camera = new Camera();
 	}
 
 	/**
