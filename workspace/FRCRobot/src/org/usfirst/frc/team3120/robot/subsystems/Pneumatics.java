@@ -17,15 +17,14 @@ public class Pneumatics extends Subsystem {
 
 	public Compressor compressor;
 	public DoubleSolenoid solenoid1;
-	//public DoubleSolenoid solenoid2;
+	public DoubleSolenoid solenoid2;
 	
 	
 	public Pneumatics()
 	{
-		
 		compressor = new Compressor(RobotMap.PCMPort);
 		solenoid1 = new DoubleSolenoid(RobotMap.hSolenoid1_0, RobotMap.hSolenoid1_1);
-		//solenoid2 = new DoubleSolenoid(RobotMap.hSolenoid2_0, RobotMap.hSolenoid2_1);
+		solenoid2 = new DoubleSolenoid(RobotMap.hSolenoid2_0, RobotMap.hSolenoid2_1);
 		
 	}
 	

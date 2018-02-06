@@ -6,6 +6,8 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -23,6 +25,7 @@ import org.usfirst.frc.team3120.robot.commands.TwoDriveCommand;
 import org.usfirst.frc.team3120.robot.subsystems.TwoMotorDrive;
 
 import autonomous.DriveForward;
+import controllers.Arduino;
 import controllers.Camera;
 
 import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
@@ -40,7 +43,8 @@ public class Robot extends IterativeRobot {
 	public static TwoMotorDrive drive = new TwoMotorDrive();
 	public static OI oi;
 	public static Camera camera;
-
+	public static Arduino arduino;
+	
 	Command autonomousCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
 	SendableChooser<Command> teleOpChooser = new SendableChooser<>();
@@ -52,6 +56,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() 
 	{
+		arduino = new Arduino(new SerialPort(8600, Port.kUSB1));
 		oi = new OI();
 		teleOpChooser.addDefault("CameraColorTest", new ColorTest());
 		teleOpChooser.addObject("Pneumatics Test", new PneumaticsCommand());
