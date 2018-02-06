@@ -15,9 +15,9 @@ void setup()
 
 void loop() 
 {
-  sendRaw(new unsigned int[]{1,2,3,5}, 4, 3000);
+  irsend.sendSony(0xa90, 12);
   
-  if(irrecv.decode(&results))
+  if(irrecv.decode(&results) && results.value == 0xa90)
   {
     Serial.write(IRConnect);
   }
@@ -27,4 +27,5 @@ void loop()
   }
 
   Serial.flush();
+  delay(20);
 }
