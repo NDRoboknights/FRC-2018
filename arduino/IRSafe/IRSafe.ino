@@ -16,6 +16,7 @@ void setup()
 void loop() 
 {
   sendRaw(new unsigned int[]{1,2,3,5}, 4, 3000);
+  
   if(irrecv.decode(&results)
   {
     Serial.write(IRConnect);
@@ -24,4 +25,6 @@ void loop()
   {
     Serial.write(IRDisconnect);
   }
+
+  Serial.flush();
 }
