@@ -56,7 +56,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() 
 	{
-		arduino = new Arduino(new SerialPort(8600, Port.kUSB1));
+		arduino = new Arduino(new SerialPort(9600, Port.kUSB1));
 		oi = new OI();
 		teleOpChooser.addDefault("CameraColorTest", new ColorTest());
 		teleOpChooser.addObject("Pneumatics Test", new PneumaticsCommand());
