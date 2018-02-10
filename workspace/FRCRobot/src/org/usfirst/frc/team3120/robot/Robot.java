@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import partstest.ColorTest;
 import partstest.MotorTest;
 import partstest.NavXTest;
+import partstest.PIDCalibration;
 
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
@@ -27,6 +28,8 @@ import org.usfirst.frc.team3120.robot.subsystems.TwoMotorDrive;
 import autonomous.DriveForward;
 import controllers.Arduino;
 import controllers.Camera;
+import controllers.NavX;
+import controllers.PID.PIDCoefficients;
 
 import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
 
@@ -41,6 +44,9 @@ public class Robot extends IterativeRobot {
 
 	public static Pneumatics pneumatics = new Pneumatics();
 	public static TwoMotorDrive drive = new TwoMotorDrive();
+	
+	public static PIDCoefficients pidc = new PIDCoefficients(0.01, 0.00, 0.00);
+	public static NavX navx;
 	public static OI oi;
 	public static Camera camera;
 	public static Arduino arduino;
@@ -58,8 +64,11 @@ public class Robot extends IterativeRobot {
 	{
 		arduino = new Arduino(new SerialPort(9600, Port.kUSB1));
 		oi = new OI();
+		navx = new NavX();
+		
 		teleOpChooser.addDefault("CameraColorTest", new ColorTest());
 		teleOpChooser.addObject("Pneumatics Test", new PneumaticsCommand());
+		teleOpChooser.addObject("PIDCalibration", new PIDCalibration());
 		teleOpChooser.addObject("Motor Test", new MotorTest());
 		teleOpChooser.addObject("NavX Test", new NavXTest());
 		teleOpChooser.addObject("DriveTest", new TwoDriveCommand());
