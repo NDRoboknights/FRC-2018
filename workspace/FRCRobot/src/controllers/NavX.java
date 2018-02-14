@@ -5,20 +5,17 @@ import com.kauailabs.navx.frc.AHRS;
 import controllers.PID.PIDInput;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 
-public class NavX extends PIDInput 
-{
-	AHRS navx;
-	
-	public NavX()
+public class NavX extends AHRS implements PIDInput 
+{	
+	public NavX(Port spi_port_id) 
 	{
-		navx = new AHRS(Port.kMXP);
-		navx.zeroYaw();
+		super(spi_port_id);
 	}
-	
+
 	@Override
 	public double getValue() {
 		// TODO Auto-generated method stub
-		return navx.getAngle();
+		return this.getAngle();
 	}
 
 	/**

@@ -15,22 +15,20 @@ public class Pneumatics extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-	public Compressor compressor;
-	public DoubleSolenoid solenoid1;
-	public DoubleSolenoid solenoid2;
-	
+	public Compressor compressor = null;
+	public DoubleSolenoid solenoid1 = null;
+	//public DoubleSolenoid solenoid2 = null;
 	
 	public Pneumatics()
 	{
 		compressor = new Compressor(RobotMap.PCMPort);
 		solenoid1 = new DoubleSolenoid(RobotMap.hSolenoid1_0, RobotMap.hSolenoid1_1);
-		solenoid2 = new DoubleSolenoid(RobotMap.hSolenoid2_0, RobotMap.hSolenoid2_1);
-		
+		//solenoid2 = new DoubleSolenoid(RobotMap.hSolenoid2_0, RobotMap.hSolenoid2_1);
 	}
 	
     public void initDefaultCommand() 
     {
-    	setDefaultCommand(new PneumaticsCommand());
+    	//setDefaultCommand(new PneumaticsCommand());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }

@@ -42,7 +42,7 @@ public class OI {
 	
 	public OI()
 	{
-		for(int i=1; i<buttons1.length-1; i++)
+		for(int i=1; i<buttons1.length; i++)
 		{
 			buttons1[i] = new JoystickButton(joystick1, i);
 		}
