@@ -8,6 +8,8 @@ import static utils.Utilities.scalePower;
 import org.usfirst.frc.team3120.robot.Robot;
 import org.usfirst.frc.team3120.robot.subsystems.TwoMotorDrive;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 public class PIDFunctions
 {
@@ -34,14 +36,14 @@ public class PIDFunctions
             //find direction
             double raw = pidController.getError();
 
-            double left = 1;
-            double right = 1;
+            double left = -1;
+            double right = -1;
 
             if(raw > 0) {
-                right = -1;
+                right = 1;
             }
             else if(raw < 0) {
-                left = -1;
+                left = 1;
             }
 
             //set power
@@ -70,16 +72,17 @@ public class PIDFunctions
             //find direction
             double raw = pidController.getError();
 
-            double left = 1;
-            double right = 1;
+            double left = -1;
+            double right = -1;
 
             if(raw > 0) {
-                right = -1;
+                right = 1;
             }
             else if(raw < 0) {
-                left = -1;
+                left = 1;
             }
 
+            SmartDashboard.putString("NavX Value: ", "" + pidController.getValue());
             //set power
             double lPower = left * Math.abs(pidController.getOutput());
             double rPower = right * Math.abs(pidController.getOutput());

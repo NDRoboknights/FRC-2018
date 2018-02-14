@@ -1,9 +1,9 @@
 package controllers.PID;
 
 
-public abstract class PIDInput
+public interface PIDInput
 {
-    public abstract double getValue();
-    public abstract double normalizeValue(double value);
-    public abstract double normalizeError(double error);
+    public double getValue();
+    public double normalizeValue(double value);
+    public double normalizeError(double error);
 }

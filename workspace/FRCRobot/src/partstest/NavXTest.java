@@ -3,7 +3,6 @@ package partstest;
 import org.usfirst.frc.team3120.robot.Robot;
 
 import controllers.NavX;
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -21,13 +20,15 @@ public class NavXTest extends Command
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	navx = new NavX();
+    	navx = Robot.navx;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
     	SmartDashboard.putString("NavX Value: ", "" + navx.getValue());
+    	SmartDashboard.putString("Is Connected : ", "" + navx.isConnected());
+    	SmartDashboard.putString("Is Calibrating : ", "" + navx.isCalibrating());
     }
 
     // Make this return true when this Command no longer needs to run execute()

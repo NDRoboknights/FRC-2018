@@ -53,6 +53,7 @@ public class Utilities
             }
         }
 
+        max = Math.abs(max);
         if(max <= 1.0) return doubles;
 
         //scale everything to max

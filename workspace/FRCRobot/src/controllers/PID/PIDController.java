@@ -1,5 +1,7 @@
 package controllers.PID;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * Uses a PID Function to control the output given {@link PIDCoefficients} and a {@link #pidInput}
  * of type PIDInput.
@@ -100,8 +102,11 @@ public class PIDController
                 dTime = (System.nanoTime() * 10E-9) - prevTime; //convert from nanosec -> sec
 
                 double p = pidc.p * currErr;
+                SmartDashboard.putString("P Raw: ", "" + p);
                 double i = pidc.i * totErr * dTime;
+                SmartDashboard.putString("I Raw: ", "" + i);
                 double d = (pidc.d * currErr) / dTime;
+                SmartDashboard.putString("D Raw: ", "" + d);
 
                 output = p + i + d;
 
