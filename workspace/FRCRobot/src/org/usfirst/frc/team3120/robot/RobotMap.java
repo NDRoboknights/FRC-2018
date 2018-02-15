@@ -22,10 +22,13 @@ public class RobotMap {
 	public static int hSolenoid1_1 = 1;
 	public static int hSolenoid2_0 = 0;
 	public static int hSolenoid2_1 = 0;
+	public static int hSolenoid3_0 = 0;
+	public static int hSolenoid3_1 = 0;
 
 	
 	public static int LMotor = 0;
 	public static int RMotor = 1;
+	public static int LSMotor = 2;
 //	public static int BLMotor = 2;
 //	public static int BRMotor = 3;
 }

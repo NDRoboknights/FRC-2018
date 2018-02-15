@@ -2,7 +2,6 @@ package org.usfirst.frc.team3120.robot.commands;
 
 import org.usfirst.frc.team3120.robot.Robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import utils.Utilities;
 

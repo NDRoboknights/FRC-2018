@@ -2,7 +2,6 @@ package partstest;
 
 import org.usfirst.frc.team3120.robot.Robot;
 
-import controllers.ColorProcessor;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

@@ -1,26 +1,32 @@
 
 package org.usfirst.frc.team3120.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import partstest.ColorTest;
+import partstest.MotorTest;
 import partstest.NavXTest;
 import partstest.PIDCalibration;
+import partstest.SolenoidTest;
 
-import org.usfirst.frc.team3120.robot.commands.PneumaticsCommand;
 import org.usfirst.frc.team3120.robot.commands.TwoDriveCommand;
 import org.usfirst.frc.team3120.robot.subsystems.TwoMotorDrive;
 
+import autonomous.DriveForward;
 import controllers.Arduino;
 import controllers.Camera;
 import controllers.NavX;
 import controllers.PID.PIDCoefficients;
 
-import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
+import org.usfirst.frc.team3120.robot.subsystems.LiftPlusRotate;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,10 +37,11 @@ import org.usfirst.frc.team3120.robot.subsystems.Pneumatics;
  */
 public class Robot extends IterativeRobot {
 
-	public static Pneumatics pneumatics; //= new Pneumatics();
+	public static Compressor compressor = new Compressor(RobotMap.PCMPort);
+	public static LiftPlusRotate LPR = new LiftPlusRotate();
 	public static TwoMotorDrive drive = new TwoMotorDrive();
 	
-	public static PIDCoefficients pidc = null;
+	public static PIDCoefficients pidc = new PIDCoefficients(6.2E-3, 6.2E-5, 1.7E-7);
 	public static NavX navx = null;
 	public static OI oi = null;
 	public static Camera camera = null;
@@ -51,28 +58,28 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() 
 	{
-		//arduino = new Arduino(new SerialPort(9600, Port.kUSB1));
+		arduino = new Arduino(new SerialPort(9600, Port.kUSB1));
 		oi = new OI();
 		navx = new NavX(Port.kMXP);
 		
-		//teleOpChooser.addDefault("CameraColorTest", new ColorTest());
-		//teleOpChooser.addObject("Pneumatics Test", new PneumaticsCommand());
+		teleOpChooser.addDefault("CameraColorTest", new ColorTest());
+		teleOpChooser.addObject("Pneumatics Test", new SolenoidTest());
 		teleOpChooser.addObject("PIDCalibration", new PIDCalibration());
-//		teleOpChooser.addObject("Motor Test", new MotorTest());
+		teleOpChooser.addObject("Motor Test", new MotorTest());
 		teleOpChooser.addObject("NavX Test", new NavXTest());
 		teleOpChooser.addObject("DriveTest", new TwoDriveCommand());
-//		
-		//CommandGroup teleopCommand = new CommandGroup();
-//		teleopCommand.addParallel(new PneumaticsCommand());
-		//teleopCommand.addParallel(new TwoDriveCommand());
-		//teleOpChooser.addDefault("TeleOp Main", teleopCommand);
+
+		CommandGroup teleopCommand = new CommandGroup();
+		teleopCommand.addParallel(new SolenoidTest());
+		teleopCommand.addParallel(new TwoDriveCommand());
+		teleOpChooser.addDefault("TeleOp Main", teleopCommand);
 	
 		SmartDashboard.putData("TeleOp Mode", teleOpChooser);
 		
-//		autoChooser.addDefault("DriveForward", new DriveForward());
-//		SmartDashboard.putData("Auto Mode", autoChooser);
-//		
-//		camera = new Camera();
+		autoChooser.addDefault("DriveForward", new DriveForward());
+		SmartDashboard.putData("Auto Mode", autoChooser);
+		
+		camera = new Camera();
 	}
 
 	/**

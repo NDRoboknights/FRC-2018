@@ -1,39 +1,38 @@
-package org.usfirst.frc.team3120.robot.commands;
+package partstest;
 
 import org.usfirst.frc.team3120.robot.Robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class PneumaticsCommand extends Command {
+public class SolenoidTest extends Command {
 
-    public PneumaticsCommand() {
+    public SolenoidTest() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.pneumatics);
+    	requires(Robot.LPR);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-    	Robot.pneumatics.compressor.start();
+    	Robot.compressor.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
     	if(Robot.oi.buttons1[3].get()) {
-    		Robot.pneumatics.solenoid1.set(Value.kForward);
+    		Robot.LPR.solenoid1.set(Value.kForward);
     	}
     	else if(Robot.oi.buttons1[5].get()) {
-    		Robot.pneumatics.solenoid1.set(Value.kReverse);
+    		Robot.LPR.solenoid1.set(Value.kReverse);
     	}
     	else {
-    		Robot.pneumatics.solenoid1.set(Value.kOff);
+    		Robot.LPR.solenoid1.set(Value.kOff);
     	}
     }
 

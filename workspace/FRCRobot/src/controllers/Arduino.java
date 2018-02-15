@@ -1,6 +1,7 @@
 package controllers;
 
 import edu.wpi.first.wpilibj.SerialPort;
+import utils.TimeChecker;
 import utils.Utilities;
 
 public class Arduino 
@@ -26,16 +27,16 @@ public class Arduino
 		this.port = port;
 	}
 	
-	public boolean ableToTurn()
+	public boolean ableToTurn(TimeChecker timeout)
 	{
 		port.writeString(Code.READY.str);
 		port.flush();
-		while(port.getBytesReceived() < Code.CONNECTED.str.length())
+		while(port.getBytesReceived() < Code.CONNECTED.str.length() && timeout.checkStatus())
 		{
 			Utilities.delay(5);
 		}
 		
-		if(port.readString().equals(Code.CONNECTED.str)) {
+		if(port.getBytesReceived() == Code.CONNECTED.str.length() && port.readString().equals(Code.CONNECTED.str)) {
 			return true;
 		}
 		
