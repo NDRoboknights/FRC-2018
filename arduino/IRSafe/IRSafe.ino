@@ -32,16 +32,15 @@ void loop()
     str += chars[i];
   }
 
-  if(str.equals(Ready))
-  {
+  if(str.equals(Ready)){
     irsend.sendSony(0xa90, 12);
     
-    if(irrecv.decode(&results) && results.value == 0xa90)
-    {
+    delay(2);
+    
+    if(irrecv.decode(&results) && results.value == 0xa90){
       writeString(IRConnect);
     }
-    else 
-    {
+    else {
       writeString(IRDisconnect);
     }
   }

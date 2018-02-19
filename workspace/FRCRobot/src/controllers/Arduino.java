@@ -37,10 +37,6 @@ public class Arduino
 			Utilities.delay(5);
 		}
 		
-		if(port.getBytesReceived() == Code.CONNECTED.str.length() && port.readString().equals(Code.CONNECTED.str)) {
-			return true;
-		}
-		
-		return false;
+		return (port.getBytesReceived() == Code.CONNECTED.str.length() && port.readString().equals(Code.CONNECTED.str));
 	}
 }

@@ -64,8 +64,8 @@ public class Robot extends IterativeRobot {
 		navx = new NavX(Port.kMXP);
 		
 		CommandGroup teleopCommand = new CommandGroup();
-		teleopCommand.addParallel(new SolenoidTest());
 		teleopCommand.addParallel(new TwoDriveCommand());
+		teleopCommand.addParallel(new LSCommand());
 		teleOpChooser.addDefault("TeleOp Main", teleopCommand);
 		
 		teleOpChooser.addObject("CameraColorTest", new ColorTest());
@@ -122,8 +122,9 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
+		if (autonomousCommand != null) {
 			autonomousCommand.start();
+		}
 	}
 
 	/**
@@ -140,8 +141,9 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
+		if (autonomousCommand != null) {
 			autonomousCommand.cancel();
+		}
 		
 		teleOpChooser.getSelected().start();
 	}
