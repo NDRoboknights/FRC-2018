@@ -27,11 +27,12 @@ public class Arduino
 		this.port = port;
 	}
 	
-	public boolean ableToTurn(TimeChecker timeout)
+	public boolean ableToTurn(long timeout)
 	{
+		TimeChecker tChecker = new TimeChecker(timeout);
 		port.writeString(Code.READY.str);
 		port.flush();
-		while(port.getBytesReceived() < Code.CONNECTED.str.length() && timeout.checkStatus())
+		while(port.getBytesReceived() < Code.CONNECTED.str.length() && tChecker.checkStatus())
 		{
 			Utilities.delay(5);
 		}

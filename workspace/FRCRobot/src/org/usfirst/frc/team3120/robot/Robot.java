@@ -17,6 +17,7 @@ import partstest.NavXTest;
 import partstest.PIDCalibration;
 import partstest.SolenoidTest;
 
+import org.usfirst.frc.team3120.robot.commands.LSCommand;
 import org.usfirst.frc.team3120.robot.commands.TwoDriveCommand;
 import org.usfirst.frc.team3120.robot.subsystems.TwoMotorDrive;
 
@@ -42,10 +43,10 @@ public class Robot extends IterativeRobot {
 	public static TwoMotorDrive drive = new TwoMotorDrive();
 	
 	public static PIDCoefficients pidc = new PIDCoefficients(6.2E-3, 6.2E-5, 1.7E-7);
-	public static NavX navx = null;
-	public static OI oi = null;
-	public static Camera camera = null;
-	public static Arduino arduino = null;
+	public static NavX navx;
+	public static OI oi;
+	public static Camera camera;
+	public static Arduino arduino;
 	
 	Command autonomousCommand;
 	SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -62,17 +63,18 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		navx = new NavX(Port.kMXP);
 		
-		teleOpChooser.addDefault("CameraColorTest", new ColorTest());
-		teleOpChooser.addObject("Pneumatics Test", new SolenoidTest());
-		teleOpChooser.addObject("PIDCalibration", new PIDCalibration());
-		teleOpChooser.addObject("Motor Test", new MotorTest());
-		teleOpChooser.addObject("NavX Test", new NavXTest());
-		teleOpChooser.addObject("DriveTest", new TwoDriveCommand());
-
 		CommandGroup teleopCommand = new CommandGroup();
 		teleopCommand.addParallel(new SolenoidTest());
 		teleopCommand.addParallel(new TwoDriveCommand());
 		teleOpChooser.addDefault("TeleOp Main", teleopCommand);
+		
+		teleOpChooser.addObject("CameraColorTest", new ColorTest());
+		teleOpChooser.addObject("Pneumatics Test", new SolenoidTest());
+		teleOpChooser.addObject("PIDCalibration", new PIDCalibration());
+		teleOpChooser.addObject("Motor Test", new MotorTest());
+		teleOpChooser.addObject("NavX Test", new NavXTest());
+		teleOpChooser.addObject("Drive Test", new TwoDriveCommand());
+		teleOpChooser.addObject("LazySusan Test", new LSCommand());
 	
 		SmartDashboard.putData("TeleOp Mode", teleOpChooser);
 		

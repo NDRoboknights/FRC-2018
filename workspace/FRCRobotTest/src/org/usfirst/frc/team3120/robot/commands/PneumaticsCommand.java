@@ -36,6 +36,28 @@ public class PneumaticsCommand extends Command {
     		Robot.pneumatics.solenoid1.set(true);
     		Robot.pneumatics.solenoid0.set(true);
     	}
+    	
+    	if(Robot.oi.buttons1[4].get()) {
+    		Robot.pneumatics.solenoid2.set(true);
+    		Robot.pneumatics.solenoid3.set(false);
+    	}else if(Robot.oi.buttons1[5].get()) {
+    		Robot.pneumatics.solenoid2.set(false);
+    		Robot.pneumatics.solenoid3.set(true);
+    	}else {
+    		Robot.pneumatics.solenoid2.set(true);
+    		Robot.pneumatics.solenoid3.set(true);
+    	}
+    	
+    	if(Robot.oi.buttons1[10].get()) {
+    		Robot.pneumatics.solenoid4.set(true);
+    		Robot.pneumatics.solenoid5.set(false);
+    	}else if(Robot.oi.buttons1[12].get()) {
+    		Robot.pneumatics.solenoid4.set(false);
+    		Robot.pneumatics.solenoid5.set(true);
+    	}else {
+    		Robot.pneumatics.solenoid4.set(true);
+    		Robot.pneumatics.solenoid5.set(true);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -17,6 +17,10 @@ public class Pneumatics extends Subsystem {
 	public Compressor compressor;
 	public Solenoid solenoid0;
 	public Solenoid solenoid1;
+	public Solenoid solenoid2;
+	public Solenoid solenoid3;
+	public Solenoid solenoid4;
+	public Solenoid solenoid5;
 	
 	public Pneumatics()
 	{
@@ -28,6 +32,11 @@ public class Pneumatics extends Subsystem {
     	
 		solenoid0 = new Solenoid(RobotMap.solenoid0);
 		solenoid1 = new Solenoid(RobotMap.solenoid1);
+		solenoid2 = new Solenoid(RobotMap.solenoid2);
+		solenoid3 = new Solenoid(RobotMap.solenoid3);
+		solenoid4 = new Solenoid(RobotMap.solenoid4);
+		solenoid5 = new Solenoid(RobotMap.solenoid5);
+		
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }

@@ -4,12 +4,10 @@ import org.usfirst.frc.team3120.robot.Robot;
 import org.usfirst.frc.team3120.robot.RobotMap;
 
 import controllers.Arduino;
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import utils.TimeChecker;
 
 /**
  *
@@ -19,10 +17,10 @@ public class LiftPlusRotate extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-	public DoubleSolenoid solenoid1 = null;
-	public DoubleSolenoid solenoid2 = null;
-	public DoubleSolenoid solenoid3 = null;
-	public Spark spark1 = null;
+	public DoubleSolenoid solenoid1;
+	public DoubleSolenoid solenoid2;
+	public DoubleSolenoid solenoid3;
+	public Spark spark1;
 	public Arduino arduino;
 	
 	public LiftPlusRotate()
@@ -62,7 +60,7 @@ public class LiftPlusRotate extends Subsystem {
 	
 	public boolean readyToTurn()
 	{
-		return arduino.ableToTurn(new TimeChecker(650));
+		return arduino.ableToTurn(650);
 	}
 	
     public void initDefaultCommand() 
