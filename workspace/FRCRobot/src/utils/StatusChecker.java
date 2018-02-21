@@ -1,9 +1,9 @@
 package utils;
 
-public abstract class StatusChecker
+public interface StatusChecker
 {
     /**
      * @return if a loop should continue running
      */
-    public abstract boolean checkStatus();
+    public boolean checkStatus();
 }

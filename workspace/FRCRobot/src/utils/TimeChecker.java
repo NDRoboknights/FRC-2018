@@ -1,6 +1,6 @@
 package utils;
 
-public class TimeChecker extends StatusChecker
+public class TimeChecker implements StatusChecker
 {
     private long endTime;
 

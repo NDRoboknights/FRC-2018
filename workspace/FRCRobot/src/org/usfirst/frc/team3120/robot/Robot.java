@@ -80,7 +80,6 @@ public class Robot extends IterativeRobot {
 		
 		autoChooser.addDefault("DriveForward", new DriveForward());
 		SmartDashboard.putData("Auto Mode", autoChooser);
-		
 		camera = new Camera();
 	}
 

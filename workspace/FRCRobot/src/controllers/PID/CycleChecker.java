@@ -3,7 +3,7 @@ package controllers.PID;
 import utils.StatusChecker;
 
 
-public class CycleChecker extends StatusChecker
+public class CycleChecker implements StatusChecker
 {
     int extraCycles;
     PIDFunctions func;

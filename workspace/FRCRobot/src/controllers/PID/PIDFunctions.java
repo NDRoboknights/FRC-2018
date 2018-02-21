@@ -148,7 +148,7 @@ public class PIDFunctions
             isRunning = nValue;
         }
 
-        class RunningChecker extends StatusChecker
+        class RunningChecker implements StatusChecker
         {
             @Override
             public boolean checkStatus() {
