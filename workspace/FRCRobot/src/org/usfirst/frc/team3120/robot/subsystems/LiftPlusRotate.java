@@ -44,9 +44,9 @@ public class LiftPlusRotate extends Subsystem {
 	
 	public LiftPlusRotate()
 	{
-		solenoid1 = new DoubleSolenoid(RobotMap.hSolenoid1_0, RobotMap.hSolenoid1_1);
-		solenoid2 = new DoubleSolenoid(RobotMap.hSolenoid2_0, RobotMap.hSolenoid2_1);
-		solenoid3 = new DoubleSolenoid(RobotMap.hSolenoid3_0, RobotMap.hSolenoid3_1);
+		solenoid1 = new DoubleSolenoid(RobotMap.hSolenoid4_0, RobotMap.hSolenoid4_1);
+		solenoid2 = new DoubleSolenoid(RobotMap.hSolenoid3_0, RobotMap.hSolenoid3_1);
+		solenoid3 = new DoubleSolenoid(RobotMap.hSolenoid1_0, RobotMap.hSolenoid1_1);
 
 		spark1 = new Spark(RobotMap.LSMotor);
 		

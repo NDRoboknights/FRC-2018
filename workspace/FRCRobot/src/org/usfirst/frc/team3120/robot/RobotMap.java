@@ -24,6 +24,8 @@ public class RobotMap {
 	public static int hSolenoid2_1 = 0;
 	public static int hSolenoid3_0 = 0;
 	public static int hSolenoid3_1 = 0;
+	public static int hSolenoid4_0 = 0;
+	public static int hSolenoid4_1 = 0;
 
 	
 	public static int LMotor = 0;
