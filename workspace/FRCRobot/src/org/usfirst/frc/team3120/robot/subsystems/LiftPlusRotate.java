@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import utils.Utilities;
 
@@ -40,6 +39,7 @@ public class LiftPlusRotate extends Subsystem {
 	public Arduino arduino;
 	public DigitalInput forLimitSwitch = new DigitalInput(1);
 	public DigitalInput bacLimitSwitch = new DigitalInput(2);
+	public static final double TURN_SPEED = 0.5;
 	
 	public LiftPlusRotate()
 	{
@@ -67,8 +67,22 @@ public class LiftPlusRotate extends Subsystem {
 		}
 	}
 	
-	
-	
+	public void turnLS() 
+	{
+		isForward = !isForward;
+		
+		if(isForward) {
+			while(!forLimitSwitch.get()) {
+				spark1.set(TURN_SPEED);
+			}
+		}
+		else {
+			while(!bacLimitSwitch.get()) {
+				spark1.set(-TURN_SPEED);
+			}
+		}
+	}
+
 	public boolean readyToTurn()
 	{
 		return arduino.ableToTurn(650);

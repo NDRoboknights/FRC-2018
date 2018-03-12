@@ -47,8 +47,8 @@ public class PIDFunctions
             }
 
             //set power
-            double lPower = power + left * Math.abs(pidController.getOutput());
-            double rPower = power + right * Math.abs(pidController.getOutput());
+            double lPower = -power + left * Math.abs(pidController.getOutput());
+            double rPower = -power + right * Math.abs(pidController.getOutput());
 
             //scale to make sure not over 1.0 max
             double[] powers = scalePower(lPower, rPower);
