@@ -38,6 +38,7 @@ public class OI {
 	
 	public double threshold = 0.15;
 	public Joystick joystick1 = new Joystick(0);
+	public Joystick joystick2 = new Joystick(1);
 	public JoystickButton[] buttons1 = new JoystickButton[joystick1.getButtonCount()+1];
 	
 	public OI()

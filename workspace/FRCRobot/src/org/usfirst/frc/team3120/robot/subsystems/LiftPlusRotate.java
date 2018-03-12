@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import utils.Direction;
 import utils.Utilities;
 
 /**
@@ -60,39 +61,38 @@ public class LiftPlusRotate extends Subsystem {
 	
 	public boolean isForward = true;
 	
-	public void safeTurnLS()
+	public void safeTurnLS(Direction dir)
 	{
-		if(readyToTurn()) {
-			turnLS();
+		if(readyToTurn(dir)) {
+			turnLS(dir);
 		}
 	}
 	
-	public void turnLS() 
+	public void turnLS(Direction dir) 
 	{
-		isForward = !isForward;
-		
-		if(isForward) {
-			while(!forLimitSwitch.get()) {
-				spark1.set(TURN_SPEED);
-			}
+		if(dir.equals(Direction.RIGHT)) {
+			spark1.set(TURN_SPEED);
 		}
 		else {
-			while(!bacLimitSwitch.get()) {
-				spark1.set(-TURN_SPEED);
-			}
+			spark1.set(-TURN_SPEED);
 		}
 	}
 
-	public boolean readyToTurn()
+	public boolean readyToTurn(Direction dir)
 	{
-		return arduino.ableToTurn(650);
+		boolean dirGood = false;
+		if(dir.equals(Direction.LEFT)) {
+			dirGood = !bacLimitSwitch.get();
+		}
+		else if(dir.equals(Direction.RIGHT)) {
+			dirGood = !forLimitSwitch.get();
+		}
+		
+		return arduino.ableToTurn(650) && dirGood;
 	}
 	
-	public boolean isClomped = false;
-	public void clomp()
+	public void clomp(boolean isClomped)
 	{
-		isClomped = !isClomped;
-		
 		if(isClomped) {
 			solenoid2.set(Value.kForward);
 			solenoid3.set(Value.kForward);
@@ -103,8 +103,18 @@ public class LiftPlusRotate extends Subsystem {
 		}
 	}
 	
+	public void fork(boolean isForked)
+	{
+		if(isForked) {
+			solenoid3.set(Value.kForward);
+		}
+		else {
+			solenoid3.set(Value.kReverse);
+		}
+	}
+	
 	public boolean isLifted = false;
-	private void lift()
+	public void lift()
 	{
 		isLifted = !isLifted;
 		

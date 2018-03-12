@@ -4,6 +4,7 @@ import org.usfirst.frc.team3120.robot.Robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
+import utils.Direction;
 import utils.Utilities;
 
 public class LSCommand extends Command 
@@ -21,36 +22,35 @@ public class LSCommand extends Command
     }
 
     boolean isForked = false;
+    boolean isLifted = false;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	if(Robot.oi.buttons1[1].get()) {
-    		Robot.LPR.solenoid2.set(Value.kForward);
-    	}
-    	else {
-    		Robot.LPR.solenoid2.set(Value.kReverse);
-    	}
+    	//Trigger controls both clomp arms
+    	Robot.LPR.clomp(Robot.oi.buttons1[1].get());
     	
     	if(Robot.oi.buttons1[2].get()) {
     		isForked = !isForked;
     		while(Robot.oi.buttons1[2].get()) {
     			Utilities.delay(5);
     		}
+    		
+    		Robot.LPR.fork(isForked);
     	}
     	
-    	if(isForked) {
-    		Robot.LPR.solenoid3.set(Value.kForward);
-    	}
-    	else {
-    		Robot.LPR.solenoid3.set(Value.kReverse);
+    	if(Robot.oi.buttons1[5].get()) {   		
+    		Robot.LPR.safeLift();
     	}
     	
     	if(Robot.oi.buttons1[3].get()) {
-    		Robot.LPR.safeTurnLS();
+    		Robot.LPR.lift();
     	}
     	
-    	if(Robot.oi.buttons1[6].get()) {
-    		Robot.LPR.turnLS();
+    	if(Robot.oi.joystick2.getTwist() > Robot.oi.threshold) {
+    		Robot.LPR.safeTurnLS(Direction.LEFT);
+    	}
+    	else if(Robot.oi.joystick2.getTwist() < Robot.oi.threshold) {
+    		Robot.LPR.safeTurnLS(Direction.RIGHT);
     	}
     }
 
